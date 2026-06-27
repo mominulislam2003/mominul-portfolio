@@ -21,12 +21,7 @@ export default function About() {
           className="relative"
         >
           <div className="avatar-frame">
-            <div className="avatar-screen">
-              <div className="avatar-head" />
-              <div className="avatar-body" />
-              <div className="avatar-code avatar-code-a" />
-              <div className="avatar-code avatar-code-b" />
-              <div className="avatar-code avatar-code-c" />
+            <img src="background.png">
             </div>
             <div className="avatar-ring" />
           </div>
