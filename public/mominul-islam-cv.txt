@@ -1,0 +1,18 @@
+Mominul Islam
+Full Stack Developer
+
+Focus
+Modern UI, scalable systems, clean digital experiences, React, PHP, MySQL, Tailwind CSS.
+
+Selected Projects
+- Student Management System
+- Notice Website
+- Mobile Master Shop Website
+- Portfolio Website
+
+Services
+- Web Development
+- Frontend Development
+- Admin Panel Development
+- Database Design
+- UI/UX Implementation
