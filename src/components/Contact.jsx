@@ -19,8 +19,8 @@ export default function Contact() {
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="glass-panel p-6 sm:p-8">
           <div className="space-y-4">
-            <a className="contact-line" href="mailto:mominul@example.com"><FiMail /> mominulislam.miad@gmail.com</a>
-            <a className="contact-line" href="tel:+8801000000000"><FiPhone /> +880 1560 019656</a>
+            <a className="contact-line" href="mailto:mominul@example.com"><FiMail /> mominul@example.com</a>
+            <a className="contact-line" href="tel:+8801000000000"><FiPhone /> +880 1000 000000</a>
             <span className="contact-line"><FiMapPin /> Bangladesh</span>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">

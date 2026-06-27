@@ -22,8 +22,7 @@ export default function About() {
         >
           <div className="avatar-frame">
             <div className="avatar-screen">
-              <div className="avatar-head" />
-              <div className="avatar-body" />
+              <img className="about-photo" src="/avater.png" alt="Mominul Islam" />
               <div className="avatar-code avatar-code-a" />
               <div className="avatar-code avatar-code-b" />
               <div className="avatar-code avatar-code-c" />

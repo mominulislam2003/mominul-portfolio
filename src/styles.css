@@ -426,6 +426,8 @@ button {
 .avatar-screen {
   position: absolute;
   inset: 48px 18px 18px;
+  display: grid;
+  place-items: center;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 34px;
@@ -435,6 +437,17 @@ button {
     rgba(255, 255, 255, 0.06);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42), inset 0 0 45px rgba(255, 255, 255, 0.045);
   backdrop-filter: blur(22px);
+}
+
+.about-photo {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 18px 18px 0;
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.42)) saturate(1.06);
 }
 
 .avatar-head,

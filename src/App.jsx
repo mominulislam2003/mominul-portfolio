@@ -48,8 +48,9 @@ export default function App() {
         ) : null}
       </AnimatePresence>
 
+      <Navbar />
+
       <div className="page-shell opacity-0">
-        <Navbar />
         <main>
           <Hero />
           <About />
