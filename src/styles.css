@@ -105,6 +105,77 @@ button {
   }
 }
 
+.brand-avatar {
+  display: grid;
+  height: 42px;
+  width: 42px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.24);
+}
+
+.brand-avatar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.loader-avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* --- Hero avatar badge (intro row) --- */
+.hero-avatar-badge {
+  flex-shrink: 0;
+  height: 56px;
+  width: 56px;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 2px solid rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.3), 0 0 8px rgba(56, 189, 248, 0.15);
+}
+
+.hero-avatar-badge img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* --- Hero title word spacing fix --- */
+.hero-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.28em;
+  line-height: 1.08;
+}
+
+.hero-word {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+/* --- Dev card top left overflow fix --- */
+.dev-card-top-left {
+  min-width: 0;
+  flex: 1 1 0%;
+  overflow: hidden;
+}
+
+.dev-card-top-left h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .custom-cursor {
   pointer-events: none;
   position: fixed;
@@ -153,11 +224,9 @@ button {
   height: 88px;
   width: 88px;
   place-items: center;
+  overflow: hidden;
   border-radius: 23px;
   background: #050816;
-  font-family: 'Space Grotesk', Inter, sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.08em;
 }
 
 @keyframes spin {
@@ -282,6 +351,18 @@ button {
   gap: 16px;
 }
 
+.dev-card-top {
+  flex-wrap: wrap;
+}
+
+.dev-card-top > div {
+  min-width: 0;
+}
+
+.dev-card-top .status-dot {
+  flex-shrink: 0;
+}
+
 .tiny-label {
   display: block;
   margin-bottom: 8px;
@@ -293,9 +374,11 @@ button {
 }
 
 .dev-card-top h2 {
+  overflow-wrap: anywhere;
   font-family: 'Space Grotesk', Inter, sans-serif;
-  font-size: clamp(1.7rem, 5vw, 2.55rem);
+  font-size: clamp(1.55rem, 4.4vw, 2.35rem);
   font-weight: 800;
+  line-height: 1.06;
 }
 
 .status-dot {
@@ -802,7 +885,7 @@ button {
 .contact-line {
   display: flex;
   min-height: 54px;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.10);
@@ -812,7 +895,14 @@ button {
 }
 
 .contact-line svg {
+  margin-top: 3px;
+  flex: 0 0 auto;
   color: rgb(56 189 248);
+}
+
+.contact-line span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .contact-form {

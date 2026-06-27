@@ -19,9 +19,9 @@ export default function Contact() {
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="glass-panel p-6 sm:p-8">
           <div className="space-y-4">
-            <a className="contact-line" href="mailto:mominul@example.com"><FiMail /> mominul@example.com</a>
-            <a className="contact-line" href="tel:+8801000000000"><FiPhone /> +880 1000 000000</a>
-            <span className="contact-line"><FiMapPin /> Bangladesh</span>
+            <a className="contact-line" href="mailto:mominulislam.miad@gmail.com"><FiMail /> <span>mominulislam.miad@gmail.com</span></a>
+            <a className="contact-line" href="tel:+8801560019656"><FiPhone /> <span>+880 (15) 60-019656</span></a>
+            <span className="contact-line"><FiMapPin /> <span>GPO-9000, Khulna, People's Republic of Bangladesh.</span></span>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             {socials.map((social) => {

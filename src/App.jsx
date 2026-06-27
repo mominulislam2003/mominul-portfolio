@@ -42,7 +42,7 @@ export default function App() {
             transition={{ duration: 0.55 }}
           >
             <div className="loader-mark">
-              <span>MI</span>
+              <span><img className="loader-avatar" src="/avater.png" alt="Mominul Islam" /></span>
             </div>
           </motion.div>
         ) : null}

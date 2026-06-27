@@ -35,8 +35,8 @@ export default function Navbar() {
     <header className="fixed left-0 right-0 top-4 z-50 px-4 sm:top-6">
       <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-white/[0.055] px-4 py-3 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:px-5">
         <button onClick={() => jump('Home')} className="group flex items-center gap-3" aria-label="Go to home">
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-cyan/40 bg-cyan/10 font-display text-sm font-bold text-cyan shadow-glow">
-            MI
+          <span className="brand-avatar" aria-hidden="true">
+            <img src="/avater.png" alt="" />
           </span>
           <span className="hidden font-display text-sm font-semibold tracking-wide text-white sm:block">Mominul Islam</span>
         </button>

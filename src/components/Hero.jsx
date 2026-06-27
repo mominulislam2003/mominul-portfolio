@@ -5,7 +5,7 @@ import { FiArrowDown, FiDownload, FiSend, FiZap } from 'react-icons/fi';
 import MagneticButton from './MagneticButton.jsx';
 import { stats } from '../data.js';
 
-const title = "Hi, I'm Mominul Islam";
+const words = ["Hi,", "I'm", "Mominul", "Islam"];
 
 export default function Hero() {
   const cardRef = useRef(null);
@@ -46,6 +46,9 @@ export default function Hero() {
     node.style.setProperty('--tilt-y', '0deg');
   }
 
+  /* Calculate cumulative char index for staggered animation delay */
+  let charCounter = 0;
+
   return (
     <section id="home" className="hero-reactive relative flex min-h-screen items-center overflow-hidden px-5 pb-20 pt-32 sm:px-6 lg:px-8">
       <div className="absolute inset-0 hero-bg" />
@@ -60,29 +63,45 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.03fr_0.97fr]">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] xl:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)]">
         <div>
+          {/* Avatar + Badge intro */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan shadow-glow"
+            className="flex items-center gap-4 mb-6"
           >
-            <FiZap /> Full Stack Developer
+            <div className="hero-avatar-badge">
+              <img src="/avater.png" alt="Mominul Islam" />
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan shadow-glow">
+              <FiZap /> Full Stack Developer
+            </div>
           </motion.div>
 
-          <h1 className="mt-7 max-w-5xl font-display text-5xl font-black leading-[0.96] text-white sm:text-6xl lg:text-7xl xl:text-8xl">
-            {title.split('').map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 40, rotateX: -70 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.62, delay: 0.28 + index * 0.018, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
+          <h1 className="hero-title max-w-4xl font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl xl:text-[5.25rem]">
+            {words.map((word, wordIndex) => {
+              const charElements = word.split('').map((char, index) => {
+                const globalIndex = charCounter++;
+                return (
+                  <motion.span
+                    key={word + char + index}
+                    initial={{ opacity: 0, y: 40, rotateX: -70 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{ duration: 0.62, delay: 0.28 + globalIndex * 0.022, ease: [0.22, 1, 0.36, 1] }}
+                    className="inline-block"
+                  >
+                    {char}
+                  </motion.span>
+                );
+              });
+              return (
+                <span key={word + wordIndex} className="hero-word">
+                  {charElements}
+                </span>
+              );
+            })}
           </h1>
 
           <motion.p
@@ -102,14 +121,14 @@ export default function Hero() {
           >
             <MagneticButton href="#projects">View Projects</MagneticButton>
             <MagneticButton href="#contact" variant="secondary"><FiSend /> Contact Me</MagneticButton>
-            <MagneticButton href="/mominul-islam-cv.txt" download variant="secondary"><FiDownload /> Download CV</MagneticButton>
+            <MagneticButton href="/mominul-islam-cv.pdf" download variant="secondary"><FiDownload /> Download CV</MagneticButton>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 1.25 }}
-            className="mt-12 grid max-w-xl grid-cols-3 gap-3"
+            className="mt-12 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="stat-card">
@@ -129,8 +148,8 @@ export default function Hero() {
           <div className="developer-stage" ref={cardRef} onMouseMove={tilt} onMouseLeave={resetTilt}>
             <div className="dev-card main-dev-card">
               <div className="dev-card-top">
-                <div>
-                  <span className="tiny-label">Live workspace</span>
+                <div className="dev-card-top-left">
+                  <span className="tiny-label">Live Workspace</span>
                   <h2>Mominul.dev</h2>
                 </div>
                 <span className="status-dot">Online</span>
