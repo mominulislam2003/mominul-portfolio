@@ -1,3 +1,4 @@
+@import "lenis/dist/lenis.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @tailwind base;
@@ -27,7 +28,7 @@ body {
     linear-gradient(120deg, rgba(45, 212, 191, 0.08), transparent 28%, rgba(251, 113, 133, 0.07) 58%, transparent 78%),
     linear-gradient(165deg, #050816 0%, #070b18 44%, #0b1120 100%);
   font-family: Inter, system-ui, sans-serif;
-  cursor: none;
+  cursor: auto;
 }
 
 button,
@@ -43,7 +44,7 @@ a {
 }
 
 button {
-  cursor: none;
+  cursor: pointer;
 }
 
 @layer components {
@@ -174,26 +175,6 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.custom-cursor {
-  pointer-events: none;
-  position: fixed;
-  z-index: 9999;
-  height: 36px;
-  width: 36px;
-  border: 1px solid rgba(56, 189, 248, 0.65);
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.28), rgba(124, 58, 237, 0.08) 55%, transparent 72%);
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.35);
-  mix-blend-mode: screen;
-  transition: width 160ms ease, height 160ms ease, border-color 160ms ease;
-}
-
-.custom-cursor-active {
-  height: 54px;
-  width: 54px;
-  border-color: rgba(251, 113, 133, 0.85);
 }
 
 .loader-mark {

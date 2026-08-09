@@ -67,24 +67,6 @@ export const services = [
   { title: 'UI/UX Implementation', icon: FiPenTool, text: 'Pixel-aware implementation from design ideas to interactive experiences.' },
 ];
 
-export const testimonials = [
-  {
-    quote: 'Mominul turns rough ideas into clean, working interfaces with impressive attention to the small interactions.',
-    name: 'Project Collaborator',
-    role: 'Startup Founder',
-  },
-  {
-    quote: 'His admin panel work made complex records easier to manage and much faster to understand.',
-    name: 'Operations Lead',
-    role: 'Education Platform',
-  },
-  {
-    quote: 'The final website felt modern, smooth, and dependable on both desktop and mobile.',
-    name: 'Local Business Owner',
-    role: 'Retail Client',
-  },
-];
-
 export const socials = [
   { name: 'GitHub', icon: FaGithub, href: 'https://github.com/' },
   { name: 'LinkedIn', icon: FaLinkedinIn, href: 'https://linkedin.com/' },

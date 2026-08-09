@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Skills from './components/Skills.jsx';
 import Projects from './components/Projects.jsx';
 import Services from './components/Services.jsx';
-import Testimonials from './components/Testimonials.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
-import CustomCursor from './components/CustomCursor.jsx';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [loading, setLoading] = useState(true);
 
+  // Initial Loader Timeout
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 1050);
     return () => window.clearTimeout(timer);
   }, []);
 
+  // GSAP Initial Animation
   useEffect(() => {
     if (!loading) {
       gsap.fromTo(
@@ -30,9 +35,32 @@ export default function App() {
     }
   }, [loading]);
 
+  // Lenis Smooth Scroll Setup
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    window.lenis = lenis; // Expose globally for Navbar
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0, 0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-space text-white selection:bg-cyan/30 selection:text-white">
-      <CustomCursor />
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div
@@ -42,7 +70,7 @@ export default function App() {
             transition={{ duration: 0.55 }}
           >
             <div className="loader-mark">
-              <span><img className="loader-avatar" src="/avater.png" alt="Mominul Islam" /></span>
+              <span><img className="loader-avatar" src="/avatar.png" alt="Mominul Islam" /></span>
             </div>
           </motion.div>
         ) : null}
@@ -57,7 +85,6 @@ export default function App() {
           <Skills />
           <Projects />
           <Services />
-          <Testimonials />
           <Contact />
         </main>
         <Footer />

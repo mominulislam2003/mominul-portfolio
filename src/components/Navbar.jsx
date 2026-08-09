@@ -7,10 +7,12 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('Home');
 
+  // Scroll Spy for active menu item
   useEffect(() => {
     const sections = navItems
       .map((item) => document.getElementById(item.toLowerCase()))
       .filter(Boolean);
+      
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -22,34 +24,57 @@ export default function Navbar() {
       },
       { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 },
     );
+    
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
-  function jump(item) {
-    setOpen(false);
-    document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
-  }
+  // Lenis Smooth Scroll Handler
+  const handleScrollTo = (e, item) => {
+    e.preventDefault();
+    setOpen(false); // Close mobile menu if open
+    
+    const targetId = `#${item.toLowerCase()}`;
+    const element = document.querySelector(targetId);
+    
+    if (element) {
+      if (window.lenis) {
+        window.lenis.scrollTo(element, {
+          offset: -80,
+          duration: 1.5,
+        });
+      } else {
+        // Fallback for native smooth scroll
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header className="fixed left-0 right-0 top-4 z-50 px-4 sm:top-6">
       <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-white/[0.055] px-4 py-3 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:px-5">
-        <button onClick={() => jump('Home')} className="group flex items-center gap-3" aria-label="Go to home">
+        <a 
+          href="#home" 
+          onClick={(e) => handleScrollTo(e, 'Home')} 
+          className="group flex items-center gap-3 cursor-pointer" 
+          aria-label="Go to home"
+        >
           <span className="brand-avatar" aria-hidden="true">
-            <img src="/avater.png" alt="" />
+            <img src="/avatar.png" alt="Avatar" />
           </span>
           <span className="hidden font-display text-sm font-semibold tracking-wide text-white sm:block">Mominul Islam</span>
-        </button>
+        </a>
 
         <div className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
-            <button
+            <a
+              href={`#${item.toLowerCase()}`}
               key={item}
-              onClick={() => jump(item)}
+              onClick={(e) => handleScrollTo(e, item)}
               className={['nav-link', active === item ? 'nav-link-active' : ''].join(' ')}
             >
               {item}
-            </button>
+            </a>
           ))}
         </div>
 
@@ -73,9 +98,14 @@ export default function Navbar() {
             className="mx-auto mt-3 grid max-w-6xl gap-2 rounded-[1.5rem] border border-white/10 bg-ink/90 p-3 shadow-2xl backdrop-blur-2xl lg:hidden"
           >
             {navItems.map((item) => (
-              <button key={item} onClick={() => jump(item)} className="rounded-2xl px-4 py-3 text-left text-sm text-slate-200 hover:bg-white/10">
+              <a
+                href={`#${item.toLowerCase()}`}
+                key={item}
+                onClick={(e) => handleScrollTo(e, item)}
+                className="block rounded-2xl px-4 py-3 text-left text-sm text-slate-200 hover:bg-white/10"
+              >
                 {item}
-              </button>
+              </a>
             ))}
           </motion.div>
         ) : null}

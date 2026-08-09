@@ -139,35 +139,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40, rotate: 3 }}
-          animate={{ opacity: 1, x: 0, rotate: 0 }}
-          transition={{ duration: 1, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-[520px] lg:max-w-none"
-        >
-          <div className="developer-stage" ref={cardRef} onMouseMove={tilt} onMouseLeave={resetTilt}>
-            <div className="dev-card main-dev-card">
-              <div className="dev-card-top">
-                <div className="dev-card-top-left">
-                  <span className="tiny-label">Live Workspace</span>
-                  <h2>Mominul.dev</h2>
-                </div>
-                <span className="status-dot">Online</span>
-              </div>
-              <div className="code-window">
-                <div className="window-controls"><span /><span /><span /></div>
-                <pre>{'const craft = {\n  ui: "premium",\n  stack: ["React", "PHP", "MySQL"],\n  motion: "cinematic"\n};'}</pre>
-              </div>
-              <div className="metric-row">
-                <div><span>Performance</span><strong>98%</strong></div>
-                <div><span>Motion</span><strong>60fps</strong></div>
-              </div>
-            </div>
-            <div className="dev-card floating-widget widget-a">React<br /><strong>Interface Systems</strong></div>
-            <div className="dev-card floating-widget widget-b">MySQL<br /><strong>Clean Data Flow</strong></div>
-            <div className="dev-card floating-widget widget-c">PHP<br /><strong>Admin Logic</strong></div>
-          </div>
-        </motion.div>
+        
       </div>
 
       <a href="#about" className="scroll-indicator" aria-label="Scroll to about section">
