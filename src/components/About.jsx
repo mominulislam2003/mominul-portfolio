@@ -1,11 +1,40 @@
+/**
+ * =============================================================================
+ * ABOUT SECTION COMPONENT (src/components/About.jsx)
+ * =============================================================================
+ * Tells the developer's story, values, core traits, and career milestones.
+ * 
+ * SECTIONS & DATA STRUCTURES:
+ * 1. Bio & Philosophy: High-level overview of experience, location, and approach.
+ * 2. Core Values (`values` array): Checklist of principles (clean code, performance, etc.).
+ * 3. Trait Cards (`traits` array): Technical Depth, Craft, Impact, and Mission.
+ * 4. Career Journey Timeline (`timeline` array): Chronological milestone events.
+ * 
+ * HOW TO MAKE CHANGES:
+ * - Update your bio: Edit the text inside the first `glass-panel` component.
+ * - Add/Modify career milestones: Edit the `timeline` array below.
+ * - Change personal values: Add or remove strings in the `values` array.
+ * - Modify traits: Update the objects inside the `traits` array.
+ * =============================================================================
+ */
+
 import { motion } from 'framer-motion';
 import {
-  FiBookOpen, FiCompass, FiCpu, FiTarget,
-  FiAward, FiCode, FiGlobe, FiHeart,
+  FiBookOpen,
+  FiCompass,
+  FiCpu,
+  FiTarget,
+  FiAward,
+  FiCode,
+  FiGlobe,
+  FiHeart,
   FiCheckCircle,
 } from 'react-icons/fi';
 import Section from './Section.jsx';
 
+/**
+ * Core developer characteristics and philosophy pillars
+ */
 const traits = [
   {
     icon: FiCpu,
@@ -33,6 +62,9 @@ const traits = [
   },
 ];
 
+/**
+ * Career Milestones / Educational History Timeline
+ */
 const timeline = [
   { year: '2022', label: 'Started web development journey with HTML, CSS & JavaScript fundamentals.' },
   { year: '2023', label: 'Built first full stack project — a Student Management System using PHP & MySQL.' },
@@ -41,12 +73,20 @@ const timeline = [
   { year: 'Now', label: 'Available for exciting projects, collaborations, and full-time roles worldwide.' },
 ];
 
-const values = ['Clean code & maintainability', 'Performance-first mindset', 'Pixel-perfect UI implementation', 'Responsive & accessible design'];
+/**
+ * Core engineering standards checklist
+ */
+const values = [
+  'Clean code & maintainability',
+  'Performance-first mindset',
+  'Pixel-perfect UI implementation',
+  'Responsive & accessible design',
+];
 
 export default function About() {
   return (
     <Section id="about" eyebrow="About Me" title="Systems-minded developer with a designer's eye.">
-      {/* Bio paragraph */}
+      {/* Bio paragraph card with frosted glass background */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +108,8 @@ export default function About() {
           admin dashboard or a personal brand site, I bring the same level of care and craftsmanship to every
           pixel.
         </p>
-        {/* Core values list */}
+
+        {/* Core engineering standards checklist */}
         <ul className="mt-6 sm:mt-7 grid gap-2.5 sm:grid-cols-2 max-w-2xl">
           {values.map((val) => (
             <li key={val} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-300">
@@ -79,7 +120,7 @@ export default function About() {
         </ul>
       </motion.div>
 
-      {/* Trait cards */}
+      {/* Trait cards grid */}
       <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mb-8 sm:mb-10">
         {traits.map((item, index) => {
           const Icon = item.icon;
@@ -104,7 +145,7 @@ export default function About() {
         })}
       </div>
 
-      {/* Journey timeline */}
+      {/* Career timeline container */}
       <motion.div
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -136,3 +177,4 @@ export default function About() {
     </Section>
   );
 }
+

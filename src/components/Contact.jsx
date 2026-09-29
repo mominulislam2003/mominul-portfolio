@@ -1,3 +1,22 @@
+/**
+ * =============================================================================
+ * CONTACT SECTION COMPONENT (src/components/Contact.jsx)
+ * =============================================================================
+ * Provides direct communication channels and an interactive message form.
+ * 
+ * FEATURES:
+ * - Direct contact links (Email, Phone, Location) with icons.
+ * - Social media links (GitHub, LinkedIn, Facebook, WhatsApp) mapped from `src/data.js`.
+ * - Interactive contact form with simulated submission toast feedback.
+ * 
+ * HOW TO CONNECT TO A REAL BACKEND / EMAIL SERVICE:
+ * - Option 1: Use EmailJS, Formspree, or Web3Forms.
+ *   In `submit(event)`, perform a `fetch()` POST request to your endpoint:
+ *   e.g., `fetch("https://formspree.io/f/your_form_id", { method: "POST", body: new FormData(event.currentTarget) })`
+ * - Option 2: Connect to your PHP / Express backend API endpoint.
+ * =============================================================================
+ */
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiMapPin, FiPhone, FiSend } from 'react-icons/fi';
@@ -5,29 +24,49 @@ import Section from './Section.jsx';
 import { socials } from '../data.js';
 
 export default function Contact() {
+  // Feedback state displayed when user submits the form
   const [sent, setSent] = useState(false);
 
+  // Handles form submission with a simulated success toast
   function submit(event) {
     event.preventDefault();
     setSent(true);
+    // Hide notification after 2.6 seconds
     window.setTimeout(() => setSent(false), 2600);
+    // Reset form fields
     event.currentTarget.reset();
   }
 
   return (
     <Section id="contact" eyebrow="Contact" title="Have an idea? Let's build something sharp.">
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+        {/* Left Column: Direct Contact Info & Socials */}
         <div className="glass-panel p-5 sm:p-8">
           <div className="space-y-3.5 sm:space-y-4">
-            <a className="contact-line" href="mailto:mominulislam.miad@gmail.com"><FiMail /> <span>mominulislam.miad@gmail.com</span></a>
-            <a className="contact-line" href="tel:+8801560019656"><FiPhone /> <span>+8801560-019656</span></a>
-            <span className="contact-line"><FiMapPin /> <span>GPO-9000, Khulna, People's Republic of Bangladesh.</span></span>
+            <a className="contact-line" href="mailto:mominulislam.miad@gmail.com">
+              <FiMail /> <span>mominulislam.miad@gmail.com</span>
+            </a>
+            <a className="contact-line" href="tel:+8801560019656">
+              <FiPhone /> <span>+8801560-019656</span>
+            </a>
+            <span className="contact-line">
+              <FiMapPin /> <span>GPO-9000, Khulna, People's Republic of Bangladesh.</span>
+            </span>
           </div>
+
+          {/* Social media button row */}
           <div className="mt-6 sm:mt-8 flex flex-wrap gap-2.5 sm:gap-3">
             {socials.map((social) => {
               const Icon = social.icon;
               return (
-                <a key={social.name} href={social.href} aria-label={social.name} className="social-button">
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.name}
+                  className="social-button"
+                >
                   <Icon />
                 </a>
               );
@@ -35,6 +74,7 @@ export default function Contact() {
           </div>
         </div>
 
+        {/* Right Column: Interactive Contact Form */}
         <motion.form
           onSubmit={submit}
           initial={{ opacity: 0, y: 28 }}
@@ -55,10 +95,18 @@ export default function Contact() {
             <span>Message</span>
             <textarea required name="message" rows="6" placeholder="Tell me what you want to create" />
           </label>
-          <button className="form-submit md:col-span-2" type="submit"><FiSend /> Send Message</button>
-          {sent ? <p className="md:col-span-2 text-sm text-mint">Message interaction captured. Connect this form to your backend to receive real submissions.</p> : null}
+          <button className="form-submit md:col-span-2" type="submit">
+            <FiSend /> Send Message
+          </button>
+          {/* Submission confirmation banner */}
+          {sent ? (
+            <p className="md:col-span-2 text-sm text-mint">
+              Message interaction captured. Connect this form to your backend to receive real submissions.
+            </p>
+          ) : null}
         </motion.form>
       </div>
     </Section>
   );
 }
+

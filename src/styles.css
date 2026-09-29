@@ -1,4 +1,27 @@
 
+/**
+ * =============================================================================
+ * GLOBAL STYLESHEET (src/styles.css)
+ * =============================================================================
+ * Contains base CSS resets, Tailwind directives, frosted glass (iOS style)
+ * surface treatments, particle field physics, and animation keyframes.
+ * 
+ * TABLE OF CONTENTS:
+ * 1. Base imports & resets (lines 1 - 50)
+ * 2. Tailwind @layer components (eyebrow, section-title, glass-panel, cards, buttons)
+ * 3. Hero layout, avatar rings, kinetic typography spacing, and floating badges
+ * 4. Orbital animation system for Skills section (.orbit-stage, .orbit-core, .orbit-icon)
+ * 5. Project cards, simulated browser mockup window, and code wireframes
+ * 6. Contact form, custom inputs, and button glow states
+ * 7. Keyframe animations (drift, particle, floatCard, ringDrift, pulseLine)
+ * 8. Media queries for tablet, mobile responsiveness, and reduced motion
+ * 
+ * HOW TO MAKE CHANGES:
+ * - Frosted glass transparency: adjust `backdrop-filter: blur(...)` and `bg-white/[...]`
+ * - Accent glow colors: modify `box-shadow: 0 0 30px rgba(...)` rules
+ * =============================================================================
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @tailwind base;
@@ -10,6 +33,7 @@
   --react-x: 0px;
   --react-y: 0px;
 }
+
 
 * {
   box-sizing: border-box;

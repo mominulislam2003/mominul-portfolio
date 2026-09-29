@@ -1,28 +1,57 @@
+<!-- 
+  =============================================================================
+  INDEX.HTML - Application Shell & Entry Point
+  =============================================================================
+  This file is the root HTML template for the Vite + React single page app.
+  
+  HOW TO CUSTOMIZE:
+  - Title & Meta Tags: Modify the <title> and <meta name="description"> below
+    to change your SEO preview and social media cards.
+  - Open Graph (OG) tags: Update og:title and og:description for social sharing.
+  - Fonts: We preconnect and load 'Inter' and 'Space Grotesk' from Google Fonts.
+    If you add new fonts, update the <link> tags here and in tailwind.config.js.
+  - Favicon: The <link rel="icon"> points to /avatar.png in the /public folder.
+  =============================================================================
+-->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Ensures proper mobile responsive viewport scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Google Fonts Preconnect for faster DNS lookup and TLS handshake -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Primary fonts: 'Inter' (body text) and 'Space Grotesk' (display/headings) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Search Engine Optimization (SEO) description -->
     <meta
       name="description"
       content="Premium developer portfolio for Mominul Islam, a full stack developer building modern, high-performance web experiences with React, PHP, MySQL, and Tailwind CSS."
     />
+    <!-- Browser mobile address bar color in dark mode -->
     <meta name="theme-color" content="#050816" />
+    
+    <!-- Open Graph (social media preview cards: Facebook, LinkedIn, Discord, etc.) -->
     <meta property="og:title" content="Mominul Islam | Full Stack Developer" />
     <meta
       property="og:description"
       content="Futuristic portfolio showcasing Mominul Islam's projects, skills, services, and contact details."
     />
     <meta property="og:type" content="website" />
+    
+    <!-- Page Title displayed in browser tab -->
     <title>Mominul Islam | Developer</title>
-    <!-- Backslash replaced with forward slash -->
+    
+    <!-- Browser Tab Favicon: Uses avatar image from the /public directory -->
     <link rel="icon" type="image/png" href="/avatar.png" />
   </head>
   <body>
+    <!-- React mounts the entire application into this #root container -->
     <div id="root"></div>
+    <!-- Vite entry point module connecting to src/main.jsx -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
