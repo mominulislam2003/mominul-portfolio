@@ -24,17 +24,36 @@ import Section from './Section.jsx';
 import { socials } from '../data.js';
 
 export default function Contact() {
-  // Feedback state displayed when user submits the form
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState({ submitting: false, submitted: false, error: null });
 
-  // Handles form submission with a simulated success toast
-  function submit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setSent(true);
-    // Hide notification after 2.6 seconds
-    window.setTimeout(() => setSent(false), 2600);
-    // Reset form fields
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    setStatus({ submitting: true, submitted: false, error: null });
+
+    try {
+      const response = await fetch('https://formspree.io/f/mwvnrkav', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        setStatus({ submitting: false, submitted: true, error: null });
+        form.reset();
+        window.setTimeout(() => {
+          setStatus((prev) => ({ ...prev, submitted: false }));
+        }, 5000);
+      } else {
+        const data = await response.json().catch(() => ({}));
+        const errorMsg = data?.errors?.map((e) => e.message).join(', ') || 'Something went wrong. Please try again.';
+        setStatus({ submitting: false, submitted: false, error: errorMsg });
+      }
+    } catch {
+      setStatus({ submitting: false, submitted: false, error: 'Network error. Please try again later.' });
+    }
   }
 
   return (
@@ -76,7 +95,9 @@ export default function Contact() {
 
         {/* Right Column: Interactive Contact Form */}
         <motion.form
-          onSubmit={submit}
+          action="https://formspree.io/f/mwvnrkav"
+          method="POST"
+          onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -95,15 +116,20 @@ export default function Contact() {
             <span>Message</span>
             <textarea required name="message" rows="6" placeholder="Tell me what you want to create" />
           </label>
-          <button className="form-submit md:col-span-2" type="submit">
-            <FiSend /> Send Message
+          <button className="form-submit md:col-span-2" type="submit" disabled={status.submitting}>
+            <FiSend /> {status.submitting ? 'Sending...' : 'Send Message'}
           </button>
-          {/* Submission confirmation banner */}
-          {sent ? (
+          {/* Submission confirmation and error banners */}
+          {status.submitted && (
             <p className="md:col-span-2 text-sm text-mint">
-              Message interaction captured. Connect this form to your backend to receive real submissions.
+              Thank you! Your message has been sent successfully.
             </p>
-          ) : null}
+          )}
+          {status.error && (
+            <p className="md:col-span-2 text-sm text-red-400">
+              {status.error}
+            </p>
+          )}
         </motion.form>
       </div>
     </Section>
